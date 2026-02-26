@@ -12,3 +12,10 @@ export interface FormValues {
     nombre: string;
     precio: number;
 }
+
+
+export interface ProductFormProps {
+    onAdded: () => void;
+    initialData?: Producto | null;
+    isEditing?: boolean;
+}

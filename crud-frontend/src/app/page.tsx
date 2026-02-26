@@ -40,7 +40,6 @@ export default function Home() {
     <main className="min-h-screen bg-slate-50 p-6 md:p-12 text-slate-900">
       <div className="max-w-5xl mx-auto">
 
-        {/* HEADER CON BOTÓN PROFESIONAL */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10">
           <div>
             <h1 className="text-4xl font-extrabold text-slate-900 tracking-tight">
@@ -50,7 +49,7 @@ export default function Home() {
               Controla tu stock en tiempo real.
             </p>
           </div>
-
+          {/* BOTÓN CREAR */}
           <Link
             href="/products/create"
             className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 active:scale-95 text-white px-8 py-3 rounded-2xl font-bold shadow-xl shadow-blue-200 transition-all duration-200"
@@ -87,9 +86,9 @@ export default function Home() {
                   </td>
                   <td className="p-5">
                     <div className="flex justify-center gap-3">
-                      {/* BOTÓN EDITAR (Próximo paso) */}
+                      {/* BOTÓN EDITAR */}
                       <Link
-                        href={`/products/${producto.id}/Editar`}
+                        href={`/products/${producto.id}/edit`}
                         className="bg-amber-50 text-amber-600 hover:bg-amber-600 hover:text-white px-4 py-2 rounded-xl text-sm font-bold transition-all"
                       >
                         Editar
@@ -111,7 +110,7 @@ export default function Home() {
           {!loading && productos.length === 0 && (
             <div className="p-20 text-center">
               <div className="text-slate-300 text-6xl mb-4">📦</div>
-              <p className="text-gray-500 font-medium">No products found. Start by adding a new one!</p>
+              <p className="text-gray-500 font-medium">En estos momentos, no diponemos de stock de productos</p>
             </div>
           )}
         </div>
