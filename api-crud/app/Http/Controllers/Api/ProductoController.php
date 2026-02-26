@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Producto;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreProductoRequest; //Imnportación para la validación
 
 class ProductoController extends Controller
 {
@@ -19,21 +20,11 @@ class ProductoController extends Controller
     /**
      * Crear Producto.
      */
-    public function store(Request $request)
+    public function store(StoreProductoRequest $request)
     {
         //Validamos que los datos sean correctos antes de guardar
-        $validate = $request->validate([
-            'nombre' => 'required|string|max:255',
-            'precio' => 'required|numeric|min:10',
-        ]);
-
-        $producto = Producto::create($validate);
-
-        //Devolvemos el producto creado con un código 201(creado)
-        return response()->json([
-            'msj' => 'Producto creado con éxito',
-            'data' => $producto
-        ], 201);
+        $producto = Producto::create($request->validated());
+        return response()->json($producto, 201);
     }
 
     /**
@@ -47,10 +38,10 @@ class ProductoController extends Controller
     /**
      * Actualizamos un producto.
      */
-    public function update(Request $request, Producto $producto)
+    public function update(StoreProductoRequest $request, Producto $producto)
     {
-        $producto->update($request->all());
-        return $producto;
+        $producto->update($request->validated());
+        return response()->json($producto);
     }
 
     /**

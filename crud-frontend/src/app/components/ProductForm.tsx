@@ -37,8 +37,13 @@ export default function ProductForm({ onAdded, initialData, isEditing = false }:
             }
             reset();
             onAdded();
-        } catch (error) {
-            alert("Error al conectar con la API");
+        } catch (error: any) {
+            if (error.response && error.response.status === 422) {
+                const serverErrors = error.response.data.errors;
+                alert("Error de validación: " + Object.values(serverErrors).flat().join(", "));
+            } else {
+                alert("Hubo un error inesperado.");
+            }
         }
     };
 
