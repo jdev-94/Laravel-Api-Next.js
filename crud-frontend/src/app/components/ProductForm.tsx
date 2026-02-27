@@ -15,7 +15,9 @@
 "use client";
 import { useForm } from "react-hook-form";
 import client from "@/src/lib/axios";
-import { FormValues, ProductFormProps } from "@/src/types/index";
+import { FormValues, ProductFormProps, Producto } from "@/src/types/index";
+import { AxiosError } from "axios"; //Manejamos los errores con Axios
+import { toast } from "react-hot-toast";
 
 export default function ProductForm({ onAdded, initialData, isEditing = false }: ProductFormProps) {
     //Inicializamos el Hook useForm
@@ -30,19 +32,26 @@ export default function ProductForm({ onAdded, initialData, isEditing = false }:
 
             if (isEditing && initialData) {
                 //usamos put porque creamos un producto
-                await client.put(`/productos/${initialData.id}`, data);
+                await client.put<Producto>(`/productos/${initialData.id}`, data);
+                toast.success("¡Producto actualizado!");
             } else {
                 //usamos Post porque creamos un producto
-                await client.post("/productos", data);
+                await client.post<Producto>("/productos", data);
+                toast.success("¡Producto creado!");
             }
             reset();
             onAdded();
-        } catch (error: any) {
-            if (error.response && error.response.status === 422) {
-                const serverErrors = error.response.data.errors;
-                alert("Error de validación: " + Object.values(serverErrors).flat().join(", "));
+        } catch (error) {
+            if (error instanceof AxiosError) {
+                if (error.response?.status === 422) {
+                    const serverErrors = error.response.data.errors;
+                    const message = Object.values(serverErrors).flat().join('\n');
+                    toast.error(`Error; \n${message}`, { duration: 5000 });
+                } else {
+                    toast.error('Error en el servidor');
+                }
             } else {
-                alert("Hubo un error inesperado.");
+                toast.error("Hubo un error inesperado.");
             }
         }
     };
