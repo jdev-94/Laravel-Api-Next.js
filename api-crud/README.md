@@ -51,22 +51,22 @@ Sigue estos pasos para ejecutar la API en tu máquina local.
 
 ### 4. Configurar el archivo de entorno (.env)
 * Copia el archivo .env.example a .env y configura las credenciales de tu base de datos:
-**cp .env.example .env**
+***cp .env.example .env**
 
-- DB_CONNECTION=mysql
-- DB_HOST=127.0.0.1
-- DB_PORT=3306
-- DB_DATABASE=nombre_de_tu_base_datos
-- DB_USERNAME=usuario
-- DB_PASSWORD=contraseña
+- `DB_CONNECTION=mysql`
+- `DB_HOST=127.0.0.1`
+- `DB_PORT=3306`
+- `DB_DATABASE=nombre_de_tu_base_datos`
+- `DB_USERNAME=usuario`
+- `DB_PASSWORD=contraseña`
 
 ### 5. Genera la clave de la aplicación
-* php artisan key:generate
+* **php artisan key:generate**
 
 ### 6. Ejecutar miraciones y seeders
-* php artisan migrate:refresh --seed
+* **php artisan migrate:refresh --seed**
 
 ### 7. Ejecutar el servidor local
-* php artisan serve
+* **php artisan serve**
 **La API estará disponible en http://localhost:8000/api.**
 
