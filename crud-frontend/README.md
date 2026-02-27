@@ -48,6 +48,9 @@ Sigue estos pasos para ejecutar el proyecto en tu máquina local.
 * npm run dev o yarn dev 
 
 ### 📂 Estructura del Proyecto
+### 📂 Estructura del Proyecto
+
+```text
 src/
 ├── app/
 │   ├── layout.tsx         # Layout principal, configuración de Toaster
