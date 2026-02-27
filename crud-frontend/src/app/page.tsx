@@ -4,115 +4,48 @@ import client from "@/src/lib/axios";
 import { Producto } from "@/src/types/index";
 import Link from "next/link";
 
-export default function Home() {
-
-  const [productos, setProductos] = useState<Producto[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  const fetchProductos = async () => {
-    setLoading(true);
-    try {
-      const response = await client.get<Producto[]>("/productos");
-      setProductos(response.data);
-    } catch (error) {
-      console.error("Error cargando productos:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchProductos();
-  }, []);
-
-  const eliminarProducto = async (id: number) => {
-    if (confirm("Estas seguro?")) {
-      try {
-        await client.delete(`/productos/${id}`);
-        setProductos(productos.filter((p) => p.id !== id));
-      } catch (error) {
-        alert("Error eliminando el producto");
-      }
-    }
-  };
-
+export default function homePage() {
   return (
-    <main className="min-h-screen bg-slate-50 p-6 md:p-12 text-slate-900">
-      <div className="max-w-5xl mx-auto">
+    <main className="min-h-screen bg-slate-50 text-slate-900">
+      <div className="max-w-7xl mx-auto px-6 py-16 md:py-24 text-center">
+        <h1 className="text-5xl md:text-6xl font-extrabold text-slate-950 mb-6">
+          Gestor de <span className="text-blue-600">Productos</span>
+        </h1>
+        <p className="text-xl text-slate-600 mb-12 max-w-2xl mx-auto">
+          Bienvenido al sistema centralizado de gestión. Desde aquí puedes visualizar todo tu inventario o añadir nuevos artículos de forma rápida.
+        </p>
 
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10">
-          <div>
-            <h1 className="text-4xl font-extrabold text-slate-900 tracking-tight">
-              Inventario de Productos
-            </h1>
-            <p className="text-slate-500 mt-2 text-lg">
-              Controla tu stock en tiempo real.
-            </p>
-          </div>
-          {/* BOTÓN CREAR */}
+        <div className="flex flex-col sm:flex-row justify-center gap-4">
+          <Link
+            href="/products/all"
+            className="inline-flex items-center justify-center bg-white border border-slate-200 text-slate-900 font-semibold py-3 px-8 rounded-xl shadow-sm hover:bg-slate-100 transition-all text-lg"
+          >
+            📋 Ver Productos
+          </Link>
+
           <Link
             href="/products/create"
-            className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 active:scale-95 text-white px-8 py-3 rounded-2xl font-bold shadow-xl shadow-blue-200 transition-all duration-200"
+            className="inline-flex items-center justify-center bg-blue-600 text-white font-semibold py-3 px-8 rounded-xl shadow-sm hover:bg-blue-700 transition-all text-lg"
           >
-            <span className="text-2xl">+</span>
-            Añadir Productos
+            ➕ Crear Producto
           </Link>
         </div>
+      </div>
 
-        {/* TABLA DE PRODUCTOS */}
-        <div className="bg-white shadow-sm rounded-3xl overflow-hidden border border-slate-200">
-          <table className="w-full text-left border-collapse">
-            <thead className="bg-slate-800 text-white">
-              <tr>
-                <th className="p-5 font-semibold uppercase text-xs tracking-wider">Producto</th>
-                <th className="p-5 font-semibold uppercase text-xs tracking-wider">Precio</th>
-                <th className="p-5 font-semibold uppercase text-xs tracking-wider text-center">Acciones</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-slate-100">
-              {loading ? (
-                <tr>
-                  <td colSpan={3} className="p-12 text-center text-slate-400 animate-pulse">
-                    Loading inventory...
-                  </td>
-                </tr>
-              ) : productos.map((producto) => (
-                <tr key={producto.id} className="hover:bg-slate-50 transition-colors group">
-                  <td className="p-5 font-medium text-slate-700">{producto.nombre}</td>
-                  <td className="p-5">
-                    <span className="text-emerald-600 font-bold bg-emerald-50 px-3 py-1 rounded-full">
-                      ${Number(producto.precio).toFixed(2)}
-                    </span>
-                  </td>
-                  <td className="p-5">
-                    <div className="flex justify-center gap-3">
-                      {/* BOTÓN EDITAR */}
-                      <Link
-                        href={`/products/${producto.id}/edit`}
-                        className="bg-amber-50 text-amber-600 hover:bg-amber-600 hover:text-white px-4 py-2 rounded-xl text-sm font-bold transition-all"
-                      >
-                        Editar
-                      </Link>
-
-                      <button
-                        onClick={() => eliminarProducto(producto.id)}
-                        className="bg-rose-50 text-rose-600 hover:bg-rose-600 hover:text-white px-4 py-2 rounded-xl text-sm font-bold transition-all"
-                      >
-                        Eliminar
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-
-          {!loading && productos.length === 0 && (
-            <div className="p-20 text-center">
-              <div className="text-slate-300 text-6xl mb-4">📦</div>
-              <p className="text-gray-500 font-medium">En estos momentos, no diponemos de stock de productos</p>
-            </div>
-          )}
+      <div className="max-w-7xl mx-auto px-6 pb-16">
+        <div className="grid md:grid-cols-3 gap-8">
+          <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
+            <h3 className="text-lg font-bold mb-2">⚡ Rápido</h3>
+            <p className="text-slate-600">Interfaz optimizada con Next.js 14.</p>
+          </div>
+          <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
+            <h3 className="text-lg font-bold mb-2">🛡️ Seguro</h3>
+            <p className="text-slate-600">Validación de datos en backend y frontend.</p>
+          </div>
+          <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
+            <h3 className="text-lg font-bold mb-2">📊 Organizado</h3>
+            <p className="text-slate-600">CRUD completo para tu inventario.</p>
+          </div>
         </div>
       </div>
     </main>
