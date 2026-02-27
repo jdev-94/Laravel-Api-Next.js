@@ -44,7 +44,7 @@ Sigue estos pasos para ejecutar la API en tu máquina local.
 
 ### 2. Clonar el repositorio
 
-git clone <https://github.com/rgm94/Laravel-Api-Next.js.git>
+* git clone <https://github.com/rgm94/Laravel-Api-Next.js.git>
 
 ### 3. Instalar dependencias de PHP
 * composer instal
@@ -52,7 +52,7 @@ git clone <https://github.com/rgm94/Laravel-Api-Next.js.git>
 ### 4. Configurar el archivo de entorno (.env)
 * Copia el archivo .env.example a .env y configura las credenciales de tu base de datos:
 **cp .env.example .env**
-
+```text
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
