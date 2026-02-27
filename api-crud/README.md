@@ -43,7 +43,7 @@ Sigue estos pasos para ejecutar la API en tu máquina local.
 * Un servidor de base de datos (MySQL, PostgreSQL, etc.)
 
 ### 2. Clonar el repositorio
-```bash
+
 git clone <https://github.com/rgm94/Laravel-Api-Next.js.git>
 
 ### 3. Instalar dependencias de PHP
