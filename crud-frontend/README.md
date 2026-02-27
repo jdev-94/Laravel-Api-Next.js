@@ -45,9 +45,8 @@ Sigue estos pasos para ejecutar el proyecto en tu máquina local.
 
 ### 5. Ejecutar el proyecto
 
-* npm run dev o yarn dev 
-
-### 📂 Estructura del Proyecto
+* npm run dev o yarn dev
+  
 ### 📂 Estructura del Proyecto
 
 ```text
