@@ -51,7 +51,7 @@ export default function EditProductPage() {
 
                 {/* Botón Volver Minimalista con Indigo */}
                 <Link
-                    href="/"
+                    href="/products/all"
                     className="inline-flex items-center gap-2 text-sm font-semibold text-slate-500 hover:text-indigo-600 transition-all mb-8 group"
                 >
                     <div className="p-2 rounded-xl bg-white border border-slate-200 shadow-sm group-hover:border-indigo-200 group-hover:bg-indigo-50">

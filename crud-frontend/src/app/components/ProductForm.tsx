@@ -18,6 +18,7 @@ import client from "@/src/lib/axios";
 import { FormValues, ProductFormProps, Producto } from "@/src/types/index";
 import { AxiosError } from "axios"; //Manejamos los errores con Axios
 import { toast } from "react-hot-toast";
+import { useRouter } from "next/navigation"; // Importa useRouter para dirigir a una vista predeterminada
 
 export default function ProductForm({ onAdded, initialData, isEditing = false }: ProductFormProps) {
     //Inicializamos el Hook useForm
@@ -26,12 +27,14 @@ export default function ProductForm({ onAdded, initialData, isEditing = false }:
         defaultValues: initialData || { nombre: '', precio: 0 }
     });
 
+    const router = useRouter(); //Inicializamos el router
+
     //Ejecutamos la función si los datos pasan la validación
     const onSubmit = async (data: FormValues) => {
         try {
 
             if (isEditing && initialData) {
-                //usamos put porque creamos un producto
+                //usamos put porque actualizamos un producto
                 await client.put<Producto>(`/productos/${initialData.id}`, data);
                 toast.success("¡Producto actualizado!");
             } else {
@@ -41,6 +44,8 @@ export default function ProductForm({ onAdded, initialData, isEditing = false }:
             }
             reset();
             onAdded();
+
+            router.push("/products/all");
         } catch (error) {
             if (error instanceof AxiosError) {
                 if (error.response?.status === 422) {
