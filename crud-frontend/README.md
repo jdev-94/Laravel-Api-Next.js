@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📦 Sistema de Gestión de Productos - Frontend (Next.js)
 
-## Getting Started
+Este proyecto es el frontend de una aplicación web para la gestión de productos (CRUD). Está desarrollado con **Next.js 14** (App Router) y consume una API REST construida con **Laravel**.
 
-First, run the development server:
+## ✨ Características
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+* **CRUD Completo**: Crear, Leer, Actualizar y Eliminar productos.
+* **Diseño Moderno**: Interfaz construida con **Tailwind CSS**.
+* **Tipado Fuerte**: Desarrollado con **TypeScript** para mayor robustez.
+* **Validación de Formularios**: Validación del lado del cliente con **React Hook Form**.
+* **Feedback Profesional**: Notificaciones flotantes profesionales (`react-hot-toast`) para éxito y errores.
+* **Manejo de API**: Consumo de API utilizando **Axios**.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🛠️ Tecnologías Utilizadas
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Tecnología | Descripción |
+| :--- | :--- |
+| **Next.js 14** | Framework de React para producción (App Router). |
+| **TypeScript** | Superset de JavaScript que añade tipado estático. |
+| **Tailwind CSS** | Framework de CSS utility-first para estilos rápidos. |
+| **Axios** | Cliente HTTP basado en promesas para realizar peticiones a la API. |
+| **React Hook Form** | Librería para gestionar formularios de forma eficiente. |
+| **React Hot Toast** | Notificaciones flotantes (Toasts) profesionales. |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🚀 Instalación y Configuración
 
-## Learn More
+Sigue estos pasos para ejecutar el proyecto en tu máquina local.
 
-To learn more about Next.js, take a look at the following resources:
+### 1. Prerrequisitos
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+* [Node.js](https://nodejs.org/) (versión 18 o superior recomendada).
+* [npm](https://www.npmjs.com/) o [yarn](https://yarnpkg.com/).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 2. Clonar el repositorio
 
-## Deploy on Vercel
+* git clone <https://github.com/rgm94/Laravel-Api-Next.js.git>
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 3. Instalar dependencias
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+npm install
+# o
+yarn install
+
+### 4. Configuración de variables de entorno
+**Crea un archivo .env.local en la raíz del proyecto y añade la URL de tu API de Laravel:**
+* NEXT_PUBLIC_API_URL=http://localhost:8000/api
+
+### 5. Ejecutar el proyecto
+
+* npm run dev
+# o
+* yarn dev 
+
+### 📂 Estructura del Proyecto
+src/
+├── app/
+│   ├── layout.tsx         # Layout principal, configuración de Toaster
+│   ├── page.tsx           # Página principal (Lista de productos)
+│   └── products/
+│       └── [id]/
+│           └── edit/
+│               └── page.tsx # Página de edición de producto
+├── components/
+│   └── ProductForm.tsx    # Formulario reutilizable (Crear/Editar)
+├── lib/
+│   └── axios.ts           # Configuración de Axios
+└── types/
+    └── index.ts           # Definición de interfaces TypeScript (Producto, FormValues)
