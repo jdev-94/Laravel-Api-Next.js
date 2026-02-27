@@ -37,9 +37,7 @@ Sigue estos pasos para ejecutar el proyecto en tu máquina local.
 
 ### 3. Instalar dependencias
 
-npm install
-# o
-yarn install
+* npm install o yarn install
 
 ### 4. Configuración de variables de entorno
 **Crea un archivo .env.local en la raíz del proyecto y añade la URL de tu API de Laravel:**
@@ -47,9 +45,7 @@ yarn install
 
 ### 5. Ejecutar el proyecto
 
-* npm run dev
-# o
-* yarn dev 
+* npm run dev o yarn dev 
 
 ### 📂 Estructura del Proyecto
 src/
