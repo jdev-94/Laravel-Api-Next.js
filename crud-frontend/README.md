@@ -33,7 +33,7 @@ Sigue estos pasos para ejecutar el proyecto en tu máquina local.
 
 ### 2. Clonar el repositorio
 
-* git clone <https://github.com/rgm94/Laravel-Api-Next.js.git>
+* git clone <https://github.com/jdev-94/Laravel-Api-Next.js.git>
 
 ### 3. Instalar dependencias
 
